@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, StdCtrls, Buttons, ExtCtrls;
+  Dialogs, Menus, StdCtrls, Buttons, ExtCtrls, ComCtrls, jpeg;
 
 type
   TfrmPrincipal = class(TForm)
@@ -32,6 +32,14 @@ type
     Sada1: TMenuItem;
     N2: TMenuItem;
     Sair2: TMenuItem;
+    Panel2: TPanel;
+    StatusBar1: TStatusBar;
+    Timer1: TTimer;
+    Image1: TImage;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
+    procedure Timer1Timer(Sender: TObject);
+    procedure BitBtn7Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,6 +51,21 @@ var
 
 implementation
 
+uses USobre;
+
 {$R *.dfm}
+
+procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
+begin
+    statusbar1.Panels[2].Text := 'Hora: ' + timetostr(time);
+    statusbar1.Panels[3].Text := 'Data: ' + datetostr(date);
+end;
+
+procedure TfrmPrincipal.BitBtn7Click(Sender: TObject);
+var sobre:TfrmSobre;
+begin
+    sobre:=TfrmSobre.create(self);
+    sobre.ShowModal;
+end;
 
 end.
