@@ -40,6 +40,7 @@ type
     BitBtn8: TBitBtn;
     procedure Timer1Timer(Sender: TObject);
     procedure BitBtn7Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,8 +65,15 @@ end;
 procedure TfrmPrincipal.BitBtn7Click(Sender: TObject);
 var sobre:TfrmSobre;
 begin
-    sobre:=Tfrmsobre.create(self);
+    sobre :=TfrmSobre.create(self);
     sobre.ShowModal;
+end;
+
+procedure TfrmPrincipal.BitBtn3Click(Sender: TObject);
+var cidade:TfrmCidade;
+begin
+    cidade := TfrmCidade.create(self);
+    cidade.ShowModal;
 end;
 
 end.
