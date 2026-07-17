@@ -1,7 +1,7 @@
 object dm_dados: Tdm_dados
   OldCreateOrder = False
-  Left = 385
-  Top = 302
+  Left = 570
+  Top = 652
   Height = 356
   Width = 679
   object Estoque: TZConnection
@@ -21,7 +21,7 @@ object dm_dados: Tdm_dados
     Left = 128
     Top = 64
   end
-  object DataSource1: TDataSource
+  object ds_cidade: TDataSource
     Left = 208
     Top = 64
   end

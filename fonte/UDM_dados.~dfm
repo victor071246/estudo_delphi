@@ -1,7 +1,28 @@
-object DataModule2: TDataModule2
+object dm_dados: Tdm_dados
   OldCreateOrder = False
-  Left = 364
-  Top = 308
-  Height = 144
-  Width = 215
+  Left = 385
+  Top = 302
+  Height = 356
+  Width = 679
+  object Estoque: TZConnection
+    ControlsCodePage = cGET_ACP
+    AutoEncodeStrings = True
+    Properties.Strings = (
+      'AutoEncodeStrings=True'
+      'controls_cp=GET_ACP')
+    Connected = True
+    HostName = 'localhost'
+    Port = 5440
+    Database = 'estoque'
+    User = 'postgres'
+    Password = 'nova_senha'
+    Protocol = 'postgresql'
+    LibraryLocation = 'C:\Program Files (x86)\PostgreSQL\9.2\bin\libpq.dll'
+    Left = 128
+    Top = 64
+  end
+  object DataSource1: TDataSource
+    Left = 208
+    Top = 64
+  end
 end

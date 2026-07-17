@@ -3,10 +3,12 @@ unit UDM_dados;
 interface
 
 uses
-  SysUtils, Classes;
+  SysUtils, Classes, DB, ZAbstractConnection, ZConnection;
 
 type
-  TDataModule2 = class(TDataModule)
+  Tdm_dados = class(TDataModule)
+    Estoque: TZConnection;
+    DataSource1: TDataSource;
   private
     { Private declarations }
   public
@@ -14,7 +16,7 @@ type
   end;
 
 var
-  DataModule2: TDataModule2;
+  dm_dados: Tdm_dados;
 
 implementation
 
