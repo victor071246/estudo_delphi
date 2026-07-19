@@ -1,10 +1,10 @@
 object dm_dados: Tdm_dados
   OldCreateOrder = False
-  Left = 570
-  Top = 652
+  Left = 478
+  Top = 197
   Height = 356
   Width = 679
-  object Estoque: TZConnection
+  object ConexaoEstoque: TZConnection
     ControlsCodePage = cGET_ACP
     AutoEncodeStrings = True
     Properties.Strings = (
@@ -19,10 +19,6 @@ object dm_dados: Tdm_dados
     Protocol = 'postgresql'
     LibraryLocation = 'C:\Program Files (x86)\PostgreSQL\9.2\bin\libpq.dll'
     Left = 128
-    Top = 64
-  end
-  object ds_cidade: TDataSource
-    Left = 208
     Top = 64
   end
 end

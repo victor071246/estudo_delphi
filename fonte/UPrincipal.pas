@@ -52,7 +52,7 @@ var
 
 implementation
 
-uses USobre;
+uses USobre, UCidade;
 
 {$R *.dfm}
 
@@ -65,12 +65,13 @@ end;
 procedure TfrmPrincipal.BitBtn7Click(Sender: TObject);
 var sobre:TfrmSobre;
 begin
-    sobre :=TfrmSobre.create(self);
+    sobre := TfrmSobre.create(self);
     sobre.ShowModal;
 end;
 
 procedure TfrmPrincipal.BitBtn3Click(Sender: TObject);
-var cidade:TfrmCidade;
+var
+    cidade: TfrmCidade;
 begin
     cidade := TfrmCidade.create(self);
     cidade.ShowModal;

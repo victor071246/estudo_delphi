@@ -4,12 +4,27 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, Grids, DBGrids, StdCtrls, Mask, DBCtrls, ExtCtrls, DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
 
 type
   TfrmCidade = class(TForm)
+    DBNavigator1: TDBNavigator;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    DBGrid1: TDBGrid;
+
+    ds_cidade: TDataSource;
+    radio_group1: TRadioGroup;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure radio_group1Click(Sender: TObject);
   private
-    { Private declarations }
+    qryCidade: TZQuery;
   public
     { Public declarations }
   end;
@@ -19,6 +34,46 @@ var
 
 implementation
 
+uses UDM_dados;
+
 {$R *.dfm}
+
+procedure TfrmCidade.FormCreate(Sender: TObject);
+
+begin
+  qryCidade := TZQuery.Create(Self);
+  qryCidade.Connection := dm_dados.ConexaoEstoque;
+  qryCidade.SQL.Text := 'select cid_codigo, cid_nome, cid_uf from tbl_cidade';
+  qryCidade.Open;
+
+  ds_cidade.DataSet := qryCidade;
+
+  DBEdit1.DataField := 'cid_codigo';
+  DBEdit2.DataField := 'cid_nome';
+  DBEdit3.DataField := 'cid_uf';
+
+end;
+procedure TfrmCidade.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  qryCidade.Close;
+end;
+
+procedure TfrmCidade.radio_group1Click(Sender: TObject);
+begin
+    qryCidade.Close;
+    qryCidade.SQL.Clear;
+
+    case radio_group1.itemindex of
+        0: qryCidade.SQL.Add('select cid_codigo, cid_nome, cid_uf');
+            qryCidade.SQL.Add('from tbl_cidade');
+            qryCidade.SQL.Add('order by cid_codigo');
+
+        1: qryCidade.SQL.Text := 'select cid_codigo, cid_nome, cid_uf
+            qryCidade.SQL.Add('from tbl_cidade');
+            qryCidade.SQL.Add('order by cid_nome');
+    end;
+    qryCidade.Open;
+
+end;
 
 end.

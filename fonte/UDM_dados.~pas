@@ -8,7 +8,7 @@ uses
 type
   Tdm_dados = class(TDataModule)
     Estoque: TZConnection;
-    DataSource1: TDataSource;
+    ds_cidade: TDataSource;
   private
     { Private declarations }
   public
