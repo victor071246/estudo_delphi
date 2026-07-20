@@ -6,11 +6,11 @@ object dm_dados: Tdm_dados
   Width = 679
   object ConexaoEstoque: TZConnection
     ControlsCodePage = cGET_ACP
-    AutoEncodeStrings = True
     Properties.Strings = (
-      'AutoEncodeStrings=True'
-      'controls_cp=GET_ACP')
+      'controls_cp=GET_ACP'
+      'RawStringEncoding=DB_CP')
     Connected = True
+    DisableSavepoints = False
     HostName = 'localhost'
     Port = 5440
     Database = 'estoque'

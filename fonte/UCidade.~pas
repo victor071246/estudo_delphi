@@ -20,9 +20,15 @@ type
 
     ds_cidade: TDataSource;
     radio_group1: TRadioGroup;
+    GroupBox1: TGroupBox;
+    DBLookupComboBox1: TDBLookupComboBox;
+    GroupBox2: TGroupBox;
+    Edit1: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure radio_group1Click(Sender: TObject);
+    procedure DBEdit4Change(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
   private
     qryCidade: TZQuery;
   public
@@ -51,6 +57,13 @@ begin
   DBEdit1.DataField := 'cid_codigo';
   DBEdit2.DataField := 'cid_nome';
   DBEdit3.DataField := 'cid_uf';
+  DBLookupComboBox1.ListSource := ds_cidade;
+  //DBLookupComboBox1.DataSource := ds_cidade;
+  DBLookupComboBox1.KeyField := 'cid_codigo';
+  DBLookupComboBox1.ListField := 'cid_nome';
+
+  //DBLookupComboBox1.DataField := 'cid_codigo';
+
 
 end;
 procedure TfrmCidade.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -63,17 +76,28 @@ begin
     qryCidade.Close;
     qryCidade.SQL.Clear;
 
-    case radio_group1.itemindex of
-        0: qryCidade.SQL.Add('select cid_codigo, cid_nome, cid_uf');
-            qryCidade.SQL.Add('from tbl_cidade');
-            qryCidade.SQL.Add('order by cid_codigo');
 
-        1: qryCidade.SQL.Text := 'select cid_codigo, cid_nome, cid_uf
-            qryCidade.SQL.Add('from tbl_cidade');
-            qryCidade.SQL.Add('order by cid_nome');
+    case radio_group1.itemindex of
+        0:  begin
+              qryCidade.SQL.Add('select cid_codigo, cid_nome, cid_uf');
+              qryCidade.SQL.Add('from tbl_cidade');
+              qryCidade.SQL.Add('order by cid_codigo');
+            end;
+
+        1:  begin
+              qryCidade.SQL.Add('select cid_codigo, cid_nome, cid_uf');
+              qryCidade.SQL.Add('from tbl_cidade');
+              qryCidade.SQL.Add('order by cid_nome');
+            end;
     end;
+    
     qryCidade.Open;
 
+end;
+
+procedure TfrmCidade.Edit1Change(Sender: TObject);
+begin
+    qryCidade.Locate('cid_nome', Edit1.Text, [loPartialKey, loCaseInsensitive]);
 end;
 
 end.

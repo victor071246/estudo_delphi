@@ -107,7 +107,7 @@ object frmCidade: TfrmCidade
   object DBGrid1: TDBGrid
     Left = 248
     Top = 416
-    Width = 673
+    Width = 745
     Height = 185
     DataSource = ds_cidade
     Font.Charset = DEFAULT_CHARSET
@@ -136,6 +136,37 @@ object frmCidade: TfrmCidade
       'Nome')
     TabOrder = 5
     OnClick = radio_group1Click
+  end
+  object GroupBox1: TGroupBox
+    Left = 808
+    Top = 256
+    Width = 185
+    Height = 105
+    Caption = 'Consulta por Sele'#231#227'o'
+    TabOrder = 6
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 16
+      Top = 32
+      Width = 145
+      Height = 21
+      TabOrder = 0
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 240
+    Top = 16
+    Width = 753
+    Height = 57
+    Caption = 'Consulta via Digita'#231#227'o'
+    TabOrder = 7
+    object Edit1: TEdit
+      Left = 18
+      Top = 22
+      Width = 713
+      Height = 21
+      TabOrder = 0
+      OnChange = Edit1Change
+    end
   end
   object ds_cidade: TDataSource
     Left = 1152
