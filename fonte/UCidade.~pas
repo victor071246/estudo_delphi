@@ -15,7 +15,6 @@ type
     Label3: TLabel;
     DBEdit1: TDBEdit;
     DBEdit2: TDBEdit;
-    DBEdit3: TDBEdit;
     DBGrid1: TDBGrid;
 
     ds_cidade: TDataSource;
@@ -24,10 +23,10 @@ type
     DBLookupComboBox1: TDBLookupComboBox;
     GroupBox2: TGroupBox;
     Edit1: TEdit;
+    DBComboBox1: TDBComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure radio_group1Click(Sender: TObject);
-    procedure DBEdit4Change(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
   private
     qryCidade: TZQuery;
@@ -45,7 +44,8 @@ uses UDM_dados;
 {$R *.dfm}
 
 procedure TfrmCidade.FormCreate(Sender: TObject);
-
+var
+  qryUF: TZQuery;
 begin
   qryCidade := TZQuery.Create(Self);
   qryCidade.Connection := dm_dados.ConexaoEstoque;
@@ -56,11 +56,39 @@ begin
 
   DBEdit1.DataField := 'cid_codigo';
   DBEdit2.DataField := 'cid_nome';
-  DBEdit3.DataField := 'cid_uf';
+  //DBEdit3.DataField := 'cid_uf';
   DBLookupComboBox1.ListSource := ds_cidade;
   //DBLookupComboBox1.DataSource := ds_cidade;
   DBLookupComboBox1.KeyField := 'cid_codigo';
   DBLookupComboBox1.ListField := 'cid_nome';
+
+
+  //DBLookupComboBox2.ListSource := ds_cidade;
+  //DBLookupComboBox2.ListField := 'cid_uf';
+  //DBLookupComboBox2.KeyField := 'cid_codigo';
+  //DBLookupComboBox2.DataSource := ds_cidade;
+  //DBLookupComboBox2.DataField := 'cid_uf';
+  //DBComboBox1.DataSource := ds_cidade;
+  //DBComboBox1.DataSource := ds_cidade;
+
+  DBComboBox1.DataSource := ds_cidade;
+  DBComboBox1.DataField := 'cid_uf';
+
+  qryUF := TZQuery.Create(nil);
+  qryUF.Connection := dm_dados.ConexaoEstoque;
+  qryUF.SQL.Text := 'SELECT DISTINCT cid_uf FROM tbl_cidade ORDER BY cid_uf';
+  qryUF.Open;
+
+  DBComboBox1.Items.Clear;
+  while not qryUF.Eof do
+  begin
+    DBComboBox1.Items.Add(qryUF.FieldByName('cid_uf').AsString);
+    qryUF.Next;
+  end;
+  
+  qryUF.Close;
+
+
 
   //DBLookupComboBox1.DataField := 'cid_codigo';
 

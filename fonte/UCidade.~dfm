@@ -90,20 +90,6 @@ object frmCidade: TfrmCidade
     ParentFont = False
     TabOrder = 2
   end
-  object DBEdit3: TDBEdit
-    Left = 353
-    Top = 334
-    Width = 121
-    Height = 37
-    DataSource = ds_cidade
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -24
-    Font.Name = 'MS Sans Serif'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
-  end
   object DBGrid1: TDBGrid
     Left = 248
     Top = 416
@@ -115,13 +101,39 @@ object frmCidade: TfrmCidade
     Font.Height = -24
     Font.Name = 'MS Sans Serif'
     Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'CID_CODIGO'
+        Title.Alignment = taCenter
+        Title.Caption = 'C'#243'digo'
+        Width = 81
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CID_NOME'
+        Title.Alignment = taCenter
+        Title.Caption = 'Nome da Cidade'
+        Width = 291
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CID_UF'
+        Title.Alignment = taCenter
+        Title.Caption = 'UF'
+        Width = 94
+        Visible = True
+      end>
   end
   object radio_group1: TRadioGroup
     Left = 808
@@ -134,7 +146,7 @@ object frmCidade: TfrmCidade
     Items.Strings = (
       'C'#243'digo'
       'Nome')
-    TabOrder = 5
+    TabOrder = 4
     OnClick = radio_group1Click
   end
   object GroupBox1: TGroupBox
@@ -143,7 +155,7 @@ object frmCidade: TfrmCidade
     Width = 185
     Height = 105
     Caption = 'Consulta por Sele'#231#227'o'
-    TabOrder = 6
+    TabOrder = 5
     object DBLookupComboBox1: TDBLookupComboBox
       Left = 16
       Top = 32
@@ -158,7 +170,7 @@ object frmCidade: TfrmCidade
     Width = 753
     Height = 57
     Caption = 'Consulta via Digita'#231#227'o'
-    TabOrder = 7
+    TabOrder = 6
     object Edit1: TEdit
       Left = 18
       Top = 22
@@ -167,6 +179,20 @@ object frmCidade: TfrmCidade
       TabOrder = 0
       OnChange = Edit1Change
     end
+  end
+  object DBComboBox1: TDBComboBox
+    Left = 352
+    Top = 336
+    Width = 121
+    Height = 37
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 29
+    ParentFont = False
+    TabOrder = 7
   end
   object ds_cidade: TDataSource
     Left = 1152
