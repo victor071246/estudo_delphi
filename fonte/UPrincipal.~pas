@@ -52,7 +52,7 @@ var
 
 implementation
 
-uses USobre;
+uses USobre, UCidade;
 
 {$R *.dfm}
 

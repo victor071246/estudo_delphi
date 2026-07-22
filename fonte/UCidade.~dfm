@@ -1,6 +1,6 @@
 object frmCidade: TfrmCidade
-  Left = 343
-  Top = 222
+  Left = 288
+  Top = 156
   Width = 1305
   Height = 675
   Caption = 'Manuten'#231#227'o de Cidades'
@@ -44,9 +44,9 @@ object frmCidade: TfrmCidade
   object Label3: TLabel
     Left = 248
     Top = 338
-    Width = 39
+    Width = 38
     Height = 29
-    Caption = 'RS:'
+    Caption = 'UF:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
@@ -60,7 +60,21 @@ object frmCidade: TfrmCidade
     Width = 240
     Height = 25
     DataSource = ds_cidade
+    Hints.Strings = (
+      'Primeiro Registro'
+      'Registro Anterior'
+      'Pr'#243'ximo Registro'
+      #218'ltimo Registro'
+      'Novo Registro'
+      'Excluir Registro'
+      'Editar Registro'
+      'Gravar Registro'
+      'Cancelar Registro'
+      'Atualizar Dados')
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 0
+    OnClick = DBNavigator1Click
   end
   object DBEdit1: TDBEdit
     Left = 353
@@ -68,12 +82,14 @@ object frmCidade: TfrmCidade
     Width = 121
     Height = 37
     DataSource = ds_cidade
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -24
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
+    ReadOnly = True
     TabOrder = 1
   end
   object DBEdit2: TDBEdit
@@ -95,13 +111,14 @@ object frmCidade: TfrmCidade
     Top = 416
     Width = 745
     Height = 185
+    Color = clScrollBar
     DataSource = ds_cidade
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
+    Font.Color = clPurple
     Font.Height = -24
     Font.Name = 'MS Sans Serif'
     Font.Style = []
-    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     ParentFont = False
     TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
@@ -115,6 +132,7 @@ object frmCidade: TfrmCidade
         FieldName = 'CID_CODIGO'
         Title.Alignment = taCenter
         Title.Caption = 'C'#243'digo'
+        Title.Color = clSkyBlue
         Width = 81
         Visible = True
       end
@@ -123,6 +141,7 @@ object frmCidade: TfrmCidade
         FieldName = 'CID_NOME'
         Title.Alignment = taCenter
         Title.Caption = 'Nome da Cidade'
+        Title.Color = clSkyBlue
         Width = 291
         Visible = True
       end
@@ -131,6 +150,7 @@ object frmCidade: TfrmCidade
         FieldName = 'CID_UF'
         Title.Alignment = taCenter
         Title.Caption = 'UF'
+        Title.Color = clSkyBlue
         Width = 94
         Visible = True
       end>
@@ -176,6 +196,8 @@ object frmCidade: TfrmCidade
       Top = 22
       Width = 713
       Height = 21
+      ParentShowHint = False
+      ShowHint = False
       TabOrder = 0
       OnChange = Edit1Change
     end

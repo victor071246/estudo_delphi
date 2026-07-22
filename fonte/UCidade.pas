@@ -28,9 +28,12 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure radio_group1Click(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+
   private
     qryCidade: TZQuery;
-  public
+    procedure qryCidadeAfterPost(DataSet: TDataSet);
+  public        
     { Public declarations }
   end;
 
@@ -50,7 +53,9 @@ begin
   qryCidade := TZQuery.Create(Self);
   qryCidade.Connection := dm_dados.ConexaoEstoque;
   qryCidade.SQL.Text := 'select cid_codigo, cid_nome, cid_uf from tbl_cidade';
+  qryCidade.AfterPost := qryCidadeAfterPost;
   qryCidade.Open;
+  qryCidade.FieldByName('cid_codigo').Required := False;
 
   ds_cidade.DataSet := qryCidade;
 
@@ -126,6 +131,17 @@ end;
 procedure TfrmCidade.Edit1Change(Sender: TObject);
 begin
     qryCidade.Locate('cid_nome', Edit1.Text, [loPartialKey, loCaseInsensitive]);
+end;
+
+procedure TfrmCidade.qryCidadeAfterPost(DataSet: TDataSet);
+begin
+  DataSet.Refresh;
+end;
+
+procedure TfrmCidade.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+  DBedit2.SetFocus;
 end;
 
 end.

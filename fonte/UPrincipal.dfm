@@ -583,6 +583,7 @@ object frmPrincipal: TfrmPrincipal
     Top = 152
     object Cadastros1: TMenuItem
       Caption = '&Cadastros'
+      ShortCut = 16452
       object Clientes1: TMenuItem
         Caption = '&Clientes'
       end
