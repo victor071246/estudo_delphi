@@ -38,9 +38,12 @@ type
     Image1: TImage;
     BitBtn7: TBitBtn;
     BitBtn8: TBitBtn;
+    Bairros1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure BitBtn7Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
+    procedure Cidades1Click(Sender: TObject);
+    procedure Bairros1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,7 +55,7 @@ var
 
 implementation
 
-uses USobre, UCidade;
+uses USobre, UCidade, UBairro;
 
 {$R *.dfm}
 
@@ -75,6 +78,22 @@ var
 begin
     cidade := TfrmCidade.create(self);
     cidade.ShowModal;
+end;
+
+procedure TfrmPrincipal.Cidades1Click(Sender: TObject);
+var
+    cidade: TfrmCidade;
+begin
+    cidade := TfrmCidade.create(self);
+    cidade.ShowModal;
+end;
+
+procedure TfrmPrincipal.Bairros1Click(Sender: TObject);
+var
+    bairro: TfrmBairro;
+begin
+    bairro := TfrmBairro.create(self);
+    bairro.ShowModal;
 end;
 
 end.

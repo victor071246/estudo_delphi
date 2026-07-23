@@ -1,0 +1,146 @@
+unit ULogradouro;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, StdCtrls, Mask, DBCtrls, ExtCtrls, DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+
+type
+  TfrmLogradouro = class(TForm)
+    DBNavigator1: TDBNavigator;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBGrid1: TDBGrid;
+    ds_logradouro: TDataSource;
+    radio_group1: TRadioGroup;
+    GroupBox1: TGroupBox;
+    DBLookupComboBox1: TDBLookupComboBox;
+    GroupBox2: TGroupBox;
+    Edit1: TEdit;
+    DBComboBox1: TDBComboBox;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure radio_group1Click(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
+    procedure DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
+
+  private
+    qryLogradouro: TZQuery;
+    procedure qryLogradouroAfterPost(DataSet: TDataSet);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogradouro: TfrmLogradouro;
+
+implementation
+
+uses UDM_dados;
+
+{$R *.dfm}
+
+procedure TfrmLogradouro.FormCreate(Sender: TObject);
+var
+  qryUF: TZQuery;
+begin
+  qryLogradouro := TZQuery.Create(Self);
+  qryLogradouro.Connection := dm_dados.ConexaoEstoque;
+  qryLogradouro.SQL.Text := 'select log_codigo, log_logradouro from logradouro';
+  qryLogradouro.AfterPost := qryLogradouroAfterPost;
+  qryLogradouro.Open;
+  qryLogradouro.FieldByName('log_codigo').Required := False;
+
+  ds_logradouro.DataSet := qryLogradouro;
+
+  DBEdit1.DataField := 'log_codigo';
+  DBEdit2.DataField := 'log_logradouro';
+  //DBEdit3.DataField := 'cid_uf';
+  DBLookupComboBox1.ListSource := ds_logradouro;
+  //DBLookupComboBox1.DataSource := ds_cidade;
+  DBLookupComboBox1.KeyField := 'log_codigo';
+  DBLookupComboBox1.ListField := 'log_logradouro';
+
+
+  //DBLookupComboBox2.ListSource := ds_cidade;
+  //DBLookupComboBox2.ListField := 'cid_uf';
+  //DBLookupComboBox2.KeyField := 'cid_codigo';
+  //DBLookupComboBox2.DataSource := ds_cidade;
+  //DBLookupComboBox2.DataField := 'cid_uf';
+  //DBComboBox1.DataSource := ds_cidade;
+  //DBComboBox1.DataSource := ds_cidade;
+
+  //DBComboBox1.DataSource := ds_cidade;
+  //DBComboBox1.DataField := 'cid_uf';
+
+  //qryUF := TZQuery.Create(nil);
+  //qryUF.Connection := dm_dados.ConexaoEstoque;
+  //qryUF.SQL.Text := 'SELECT DISTINCT cid_uf FROM tbl_cidade ORDER BY cid_uf';
+  //qryUF.Open;
+
+  //DBComboBox1.Items.Clear;
+  //while not qryUF.Eof do
+  //begin
+    //DBComboBox1.Items.Add(qryUF.FieldByName('cid_uf').AsString);
+    //qryUF.Next;
+  //end;
+
+  //qryUF.Close;
+
+
+
+  //DBLookupComboBox1.DataField := 'cid_codigo';
+
+
+end;
+procedure TfrmLogradouro.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  qryLogradouro.Close;
+end;
+
+procedure TfrmLogradouro.radio_group1Click(Sender: TObject);
+begin
+    qryLogradouro.Close;
+    qryLogradouro.SQL.Clear;
+
+
+    case radio_group1.itemindex of
+        0:  begin
+              qryLogradouro.SQL.Add('select log_codigo, log_logradouro');
+              qryLogradouro.SQL.Add('FROM logradouro');
+              qryLogradouro.SQL.Add('order by log_codigo');
+            end;
+
+        1:  begin
+             qryLogradouro.SQL.Add('select log_codigo, log_logradouro');
+              qryLogradouro.SQL.Add('FROM logradouro');
+              qryLogradouro.SQL.Add('order by log_logradouro');
+            end;
+    end;
+    
+    qryLogradouro.Open;
+
+end;
+
+procedure TfrmLogradouro.Edit1Change(Sender: TObject);
+begin
+    qryLogradouro.Locate('log_logradouro', Edit1.Text, [loPartialKey, loCaseInsensitive]);
+end;
+
+procedure TfrmLogradouro.qryCidadeAfterPost(DataSet: TDataSet);
+begin
+  DataSet.Refresh;
+end;
+
+procedure TfrmLogradouro.DBNavigator1Click(Sender: TObject;
+  Button: TNavigateBtn);
+begin
+  DBedit2.SetFocus;
+end;
+
+end.

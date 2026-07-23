@@ -592,6 +592,11 @@ object frmPrincipal: TfrmPrincipal
       end
       object Cidades1: TMenuItem
         Caption = '&Cidades'
+        OnClick = Cidades1Click
+      end
+      object Bairros1: TMenuItem
+        Caption = '&Bairros'
+        OnClick = Bairros1Click
       end
       object N1: TMenuItem
         Caption = '-'
